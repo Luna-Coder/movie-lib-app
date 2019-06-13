@@ -10,6 +10,7 @@ class App extends React.Component {
       queueMovies: []
     };
 
+    this.addToQueue = this.addToQueue.bind(this);
   }
 
   componentDidMount() {
@@ -17,7 +18,7 @@ class App extends React.Component {
     const BASE_URL = "https://api.themoviedb.org/3/";
     const SELECTION = `trending/`;
     const MEDIA_TYPE = `all/`;
-    const TIME_WINDOW = `day`;
+    const TIME_WINDOW = `week`;
     const API_QUERY = `?api_key=${API_KEY}`;
     const URL = `${BASE_URL}${SELECTION}${MEDIA_TYPE}${TIME_WINDOW}${API_QUERY}`;
 
@@ -35,20 +36,21 @@ class App extends React.Component {
 
   addToQueue(e, movie) {
     console.log('hello from addToQueue');
-    this.state.queueMovies.push(movie);
+    this.state.queueMovies.push([movie]);
     this.setState({
       queueMovies: this.state.queueMovies
     });
+    console.log("updated queue", this.state.queueMovies);
   }
 
   render() {
     console.log(this.state.movies);
-    
+    console.log(this.state.queueMovies);
     return (
       <div className="App">
         <MoviesList
           data={this.state.movies}
-          addToQueue={this.addToQueue}       
+          addToQueue={this.addToQueue}
         />
         <MovieQueue
           data={this.state.queueMovies}

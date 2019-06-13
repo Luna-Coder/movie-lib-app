@@ -5,11 +5,10 @@ const MovieQueue = (props) => {
   const res = props.data;
 
   let movies = res.map(movie =>
-    <div>
+    <div key={movie.id + "-div"}>
       <Movie
-        key={movie.id}
         id={movie.id}
-        poster={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
+        poster={movie.poster_path}
         title={movie.original_title}
         releaseDate={movie.release_date}
       />

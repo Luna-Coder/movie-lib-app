@@ -35,7 +35,10 @@ class App extends React.Component {
 
   addToQueue(e, movie) {
     console.log('hello from addToQueue');
-    console.log(movie);
+    this.state.queueMovies.push(movie);
+    this.setState({
+      queueMovies: this.state.queueMovies
+    });
   }
 
   render() {
